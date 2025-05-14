@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <button @click="increment">Click me</button>
+    <button @click="increment" class="text-white font-nimbus font-bold">Click mewwwe</button>
     <p>You've clicked {{ count }} times.</p>
   </div>
 </template>
@@ -30,7 +30,6 @@ export default {
 <style scoped>
 button {
   background-color: #42b983;
-  color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
