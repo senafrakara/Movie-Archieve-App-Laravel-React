@@ -4,9 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0d120e',
-        secondary: '#2c7366',
-        background: '#eadfdc',
+        primary: '#dfddcb',
+        secondary: '#110504',
+        background: '#4d0e02',
       },
       fontFamily: {
         nimbus: ['"Nimbus Sans"', 'sans-serif'],

@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { InertiaProgress } from '@inertiajs/progress';
+import AppLayout from './Layouts/AppLayout';
 
 // Import assets
 import.meta.glob([
@@ -14,18 +15,20 @@ import.meta.glob([
 
 // Initialize the progress bar
 InertiaProgress.init({
-    // The delay after which the progress bar will appear, in milliseconds
     delay: 250,
-    // The color of the progress bar
-    color: '#2c7366', // Using your secondary color from tailwind config
-    // Whether to include the default NProgress styles
+    color: '#dfddcb',
     includeCSS: true,
-    // Whether the NProgress spinner will be shown
     showSpinner: false,
 });
 
 createInertiaApp({
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.jsx`, import.meta.glob('./Pages/**/*.jsx', { eager: true })),
+    resolve: (name) => {
+        const page = resolvePageComponent(`./Pages/${name}.jsx`, import.meta.glob('./Pages/**/*.jsx', { eager: true }));
+        page.then((module) => {
+            module.default.layout = module.default.layout || <AppLayout>{page}</AppLayout>;
+        });
+        return page;
+    },
     setup({ el, App, props }) {
         const root = createRoot(el);
         root.render(
